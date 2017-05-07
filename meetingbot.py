@@ -13,11 +13,12 @@ def get_data():
     soup = BeautifulSoup(html.text, 'lxml')
     table = soup.find("tbody")
 
+    #retrieves the link for all of the transcripts
     for row in table.findAll("tr"):
         col = row.findAll("td")
         date = col[0].text.encode('utf-8')
         if col[3].text.encode('utf-8') == "Transcript":
-            print col[3].contents
+            print col[3].contents[0]['href']
 
 def main():
     get_data()
